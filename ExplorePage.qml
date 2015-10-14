@@ -8,7 +8,6 @@ Rectangle {
     width: 100
     height: 62
 
-
     Component{
         id: image_dele
         Image{
@@ -27,15 +26,86 @@ Rectangle {
     }
 
     Image{
+        id: zoomin
+        source: "icons/Zoom-In.png"
+        width: 50
+        height: width
+        anchors.right: parent.right
+        anchors.top: display_image.top
+        z: 3
+        visible: display_image.visible
+        MouseArea{
+            anchors.fill: parent
+            onClicked: {
+                display_image.scale+=0.1
+            }
+        }
+    }
+    Image{
+        id: zoomout
+        source: "icons/Zoom-Out.png"
+        width: zoomin.width
+        height: width
+        anchors.top: zoomin.bottom
+        anchors.right: parent.right
+        z: 3
+        visible: display_image.visible
+        MouseArea{
+            anchors.fill: parent
+            onClicked: {
+                display_image.scale-=0.1
+            }
+        }
+    }
+    Image{
+        id: rotate_plus
+        source: "icons/rotate.png"
+        width: zoomin.width
+        height: zoomin.height
+        anchors.top: zoomout.bottom
+        anchors.right: parent.right
+        z: 3
+        visible: display_image.visible
+        MouseArea{
+            anchors.fill: parent
+            onClicked: {
+                display_image.rotation+=15
+            }
+        }
+    }
+    Image{
+        id: rotate_minus
+        source: "icons/rotate.png"
+        width: zoomin.width
+        height: zoomin.height
+        anchors.top: rotate_plus.bottom
+        anchors.right: parent.right
+        mirror: true
+        z: 3
+        visible: display_image.visible
+        MouseArea{
+            anchors.fill: parent
+            onClicked: {
+                display_image.rotation-=15
+            }
+        }
+    }
+
+
+    Image{
         id: display_image
         width: parent.width
         height: width
+        fillMode: Image.PreserveAspectCrop
         z: 2
+        visible: false
         anchors.verticalCenter: parent.verticalCenter
         MouseArea{
             anchors.fill: parent
             onClicked:{
+                display_image.scale=1
                 display_image.visible = false
+
             }
         }
     }
@@ -47,7 +117,6 @@ Rectangle {
         z: 1
         visible: display_image.visible
     }
-
 
     ListModel{
         id: mylistmodel

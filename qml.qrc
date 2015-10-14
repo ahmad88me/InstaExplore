@@ -3,4 +3,9 @@
         <file>main.qml</file>
         <file>ExplorePage.qml</file>
     </qresource>
+    <qresource prefix="/icons">
+        <file>Zoom-In.png</file>
+        <file>Zoom-Out.png</file>
+        <file>rotate.png</file>
+    </qresource>
 </RCC>
